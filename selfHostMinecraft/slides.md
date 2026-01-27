@@ -88,7 +88,7 @@ Description= annoying-file service
 
 [Service]
 ExecStart=/usr/local/bin/annoying_file.sh
-Restart=on-success
+Restart=always
 RestartSec=5
 
 [Install]
@@ -98,8 +98,24 @@ WantedBy=multi-user.target
 Where `/usr/local/bin/annoying_file.sh` contains:
 ```bash
 #!/bin/bash
-echo "This is a real nusance" >> /home/xeyler/ANNOYINGFILE
+echo "This is a real nusance" >> /home/xeyler/ANNOYINGFIEL
 ```
+
+---
+# Managing Systemd Services
+
+We can start or stop systemd services, which is immediate and temporary.
+```
+sudo systemctl start SERVICE_NAME.service
+sudo systemctl stop SERVICE_NAME.service
+sudo systemctl restart SERVICE_NAME.service
+```
+We can also enable or disable services to tell them to try to always be running.
+```
+sudo systemctl enable SERVICE_NAME.service
+sudo systemctl disable SERVICE_NAME.service
+```
+The key is that enabled services will start when the computer turns on, even if you stoped the service in a previous session.
 
 ---
 # Minecraft Systemd Service
@@ -133,18 +149,18 @@ java -Xmx8192M -Xms4096M -jar /srv/minecraft/server.jar nogui
 
 ---
 
-# discuss portforwarding (but don't do it)
+# Port Forwarding, But Not How to Do It ):
 
-Fun fact! There are approximately 28 IPv4 IP addresses per square kilometer on earth's land.
+*Fun Fact!:* There are approximately 28 IPv4 IP addresses per square kilometer on earth's land.
 
-Fun fact! USU pretty much fits in a square kilometer.
+*Fun Fact!:* USU pretty much fits in a square kilometer.
 
-Problem: There are *way* too many computers (with IP addresses) for the internet to work.
+*Problem:* There are *way* too many computers (with IP addresses) for the internet to work.
 
-Solution: Your router has one IP address, and all of your devices connected to it are not on the internet. They talk to your router which in turn talks to the internet. 
+*Solution:* Your router has one IP address, and all of your devices connected to it are not on the internet. They talk to your router which in turn talks to the internet. 
 
-Problem: Nobody on the internet (including yourself) can find your computer (and your server).
+*Problem:* Nobody on the internet (including yourself) can find your computer (and your server).
 
-Solution: Port forwarding.
+*Solution:* Network Address Translation (NAT) and Port Forwarding. It looks pretty much the same for every router on the planet, but slightly different for pretty much every router on the planet.
 
 

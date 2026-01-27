@@ -1,0 +1,17 @@
+[Unit]
+Description= fslc-minecraft-server service
+After=network.target
+Wants=network.target
+StartLimitBurst=5
+StartLimitIntervalSec=120
+
+[Service]
+User=minecraft
+WorkingDirectory=/srv/minecraft/
+ExecStart=/srv/minecraft/start.sh
+Restart=always
+RestartSec=5
+Type=exec
+
+[Install]
+WantedBy=multi-user.target

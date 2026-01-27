@@ -1,0 +1,10 @@
+[Unit]
+Description= annoying-file service
+
+[Service]
+ExecStart=/usr/local/bin/annoying_file.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
