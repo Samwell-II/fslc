@@ -10,9 +10,10 @@ How to host a Minecraft server:
 
 1. download the server
 2. install java
-3. make a systemd service
+3. make a system user to run the server
 4. configure the world (Minecraft specific)
-5. be really cool (but understandable) while we do it
+5. make a systemd service
+6. be really cool (but understandable) while we do it
 
 ---
 
@@ -56,13 +57,18 @@ sudo useradd -rmd /srv/minecraft minecraft
 ```
 - `-r` make a system user
 - `-m` make the home directory (even though this is a system user)
-- `-d` change the default home directory (instead of `/home/USERNAME`)
+- `-d DIR` change the default home directory (instead of `/home/USERNAME`)
 
 We can switch to being the `minecraft` user.
 ```bash
 sudo -su minecraft
 ```
 Note that `cd` now takes us to `/srv/minecraft`
+
+We can delete this user in the future with
+```bash
+sudo userdel -r minecraft
+```
 
 ---
 
